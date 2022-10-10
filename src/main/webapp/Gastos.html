@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<title>Registrar Gastos</title>
+</head>
+
+<body>
+	<header></header>
+	<main>
+		<form method="get" action="ServletGastos">
+			<h1>Formulario de Egresos</h1>
+			<label> Tipo de Egreso: </label><br> <select name="tipo"
+				required>
+				<option>Servicios Públicos</option>
+				<option>Alimentación</option>
+				<option>Transportes</option>
+				<option>Otros</option>
+			</select><br>
+			<br> <label> Valor: </label><br> <input type="number"
+				id="valor" name="valor" required><br>
+			<br> <label> Fecha: </label><br> <input type="date"
+				id="fecha" name="fecha" required><br>
+			<br> <label> Responsable: </label><br> <input type="text"
+				id="responsable" name="responsable" required><br>
+			<br> <label> Asunto: </label><br>
+			<textarea rows="5" cols="20" id="asunto" name="asunto" value=""
+				required>
+      </textarea>
+			<br>
+			<br> <input type="submit" value="Enviar"> <input
+				type="button" value="limpiar" onclick="limpiar()"><br>
+		</form>
+	</main>
+	<footer></footer>
+	<script>
+		function limpiar() {
+			document.getElementById("valor").value = "";
+			document.getElementById("fecha").value = "";
+			document.getElementById("responsable").value = "";
+			document.getElementById("asunto").value = "";
+		}
+	</script>
+
+</body>
+
+</html>

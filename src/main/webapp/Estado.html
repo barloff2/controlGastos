@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+
+<body>
+	<header></header>
+	<main>
+		<form method="get" action="ServletEstado">
+			<h1>Estado de cuenta</h1>
+            <h3>Ingrese Número de Cédula</h3>
+			<input type="number"
+				id="cedula" name="cedula" required><br>
+			<br>
+			<br> <input type="submit" value="Enviar"> <input
+				type="button" value="limpiar" onclick="limpiar()"><br>
+		</form>
+	</main>
+	<footer></footer>
+	<script>
+		function limpiar() {
+			document.getElementById("cedula").value = "";
+		}
+	</script>
+</body>
+
+</html>
