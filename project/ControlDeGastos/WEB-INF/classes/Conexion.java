@@ -6,7 +6,7 @@ public class Conexion {
     Connection conectar = null;
 
     public Connection conectar() {
-    	String url = "/Library/WebServer/Documents/project/ControlDeGastos/controlGastos.db";
+    	String url = "C:\\Users\\Stiven\\eclipse-workspace\\controlGastos.db";
         try {
             Class.forName("org.sqlite.JDBC");
             conectar = DriverManager.getConnection("jdbc:sqlite:" + url);
