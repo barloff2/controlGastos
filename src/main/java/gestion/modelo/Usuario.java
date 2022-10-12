@@ -78,7 +78,6 @@ public class Usuario {
 		
 		
 		return nombres;
-		
 	}
 
 	// Metodo sobreescrito toString

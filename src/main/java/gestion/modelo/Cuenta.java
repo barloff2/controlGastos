@@ -1,9 +1,5 @@
 package gestion.modelo;
-import java.sql.Connection;
 import java.util.*;
-
-import gestion.controlador.Conexion;
-import gestion.modelo.*;
 
 public class Cuenta {
 	private double saldo; // Saldo de la cuenta
