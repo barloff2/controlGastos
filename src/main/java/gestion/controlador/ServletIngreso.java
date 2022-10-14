@@ -34,16 +34,20 @@ public class ServletIngreso extends HttpServlet {
 		double valor = Double.parseDouble(peticion.getParameter("valor"));
 		String fecha = peticion.getParameter("fecha");
 		String nombre_responsable = peticion.getParameter("nombre_responsable");
-		int documento_responsable =  Integer.parseInt(peticion.getParameter("documento_responsable"));
+		String documento_responsable = peticion.getParameter("documento_responsable");
 		String asunto = peticion.getParameter("asunto");
 		
 		//Crear Usuario
 		Usuario usuario = new Usuario();
-
 		usuario.setNombre(nombre_responsable);
+		usuario.setCedula(documento_responsable);
+		
+		
 		//Creacion Cuenta
 		Cuenta cuenta = new Cuenta(usuario);
 		//añadir Ingreso
+		cuenta.addIngresos(asunto, valor);
+		
 		//Formato de respuesta
 		
 		respuesta.setContentType("text/html");

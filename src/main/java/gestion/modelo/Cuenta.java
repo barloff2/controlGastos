@@ -1,8 +1,50 @@
 package gestion.modelo;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.*;
 
 public class Cuenta {
-	private double saldo; // Saldo de la cuenta
+	
+	private String nombre;
+	private String cedula;
+	private double saldo;
+    private Gasto gasto;
+    private Ingreso ingreso;
+    
+    public Cuenta(String cedula, String Nombre, Ingreso ingreso) {
+    	this.cedula = cedula;
+    	this.nombre = "";
+    	this.saldo = 0;
+    	this.ingreso = ingreso;	
+    }
+    public Cuenta(String cedula, String Nombre, Gasto gasto) {
+    	this.cedula = cedula;
+    	this.nombre = "";
+    	this.saldo = 0;
+    	this.gasto = gasto;	
+    }
+    
+    public void añadirIngresos() {
+		conect = this.con.conectar();
+		try {
+			PreparedStatement ps = conect.prepareStatement("INSERT INTO usuario VALUES(?,?,?);");
+			//Insertar datos
+			ps.setNull(1, 0);
+			ps.setString(2, cedula);
+			ps.setString(3, nombre);
+			ps.execute();
+			
+			conect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error: " + e.getMessage());
+    }
+    
+	
+	
+	
+	
+	/*private double saldo; // Saldo de la cuenta
     private Usuario usuarioCuenta; // Usuario propietario de la cuenta
     private List<Gasto> gastos; // Lista de gastos
     private List<Ingreso>ingresos; // Lista de ingresos
