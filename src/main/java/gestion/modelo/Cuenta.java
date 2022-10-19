@@ -1,45 +1,101 @@
 package gestion.modelo;
+import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 
+import gestion.controlador.Conexion;
+
 public class Cuenta {
-	
-	private String nombre;
-	private String cedula;
+	private Usuario usuario;
 	private double saldo;
     private Gasto gasto;
     private Ingreso ingreso;
     
-    public Cuenta(String cedula, String Nombre, Ingreso ingreso) {
-    	this.cedula = cedula;
-    	this.nombre = "";
+    public Cuenta(Usuario usuario, Ingreso ingreso) {
+    	this.usuario = usuario;
     	this.saldo = 0;
     	this.ingreso = ingreso;	
     }
-    public Cuenta(String cedula, String Nombre, Gasto gasto) {
-    	this.cedula = cedula;
-    	this.nombre = "";
+    public Cuenta(Usuario usuario, Gasto gasto) {
+    	this.usuario = usuario;
     	this.saldo = 0;
     	this.gasto = gasto;	
     }
-    
-    public void añadirIngresos() {
-		conect = this.con.conectar();
+    public double getSaldo() {
+    	Conexion con = new Conexion();
+    	Connection conect = con.conectar();
 		try {
-			PreparedStatement ps = conect.prepareStatement("INSERT INTO usuario VALUES(?,?,?);");
-			//Insertar datos
-			ps.setNull(1, 0);
-			ps.setString(2, cedula);
-			ps.setString(3, nombre);
-			ps.execute();
+			Statement st = conect.createStatement();
+			String query = "SELECT saldo_cuenta FROM cuenta;";
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next()) {
+				this.saldo = rs.getDouble(2);
+			}
 			
 			conect.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error: " + e.getMessage());
+		}
+		return this.saldo;
     }
     
+    public void añadirIngresos() {
+    	Conexion con = new Conexion();
+    	Connection conect = con.conectar();
+    	String mensaje = "";
+		try {
+			PreparedStatement ps = conect.prepareStatement("INSERT INTO ingreso VALUES(?,?,?,?,?);");
+			//Insertar datos
+			ps.setNull(1, 0);
+			ps.setString(2, ingreso.getTipo());
+			ps.setDouble(3, ingreso.getIngreso());
+			ps.setString(4, ingreso.getDescription());
+			ps.setString(5, ingreso.getFecha());
+			ps.setString(6, usuario.cedula);
+			ps.execute();
+			
+			conect.close();
+			mensaje = "añadido exitosamente."; 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			mensaje = "Error: " + e.getMessage();
+		} 
+    }
+    
+    public String añadirGasto() {
+    	Conexion con = new Conexion();
+    	Connection conect = con.conectar();
+    	String mensaje = "";
+    	saldo = getSaldo();
+    	if(saldo != 0 && saldo > ingreso.getIngreso()) {
+    		try {
+    			PreparedStatement ps = conect.prepareStatement("INSERT INTO gasto VALUES(?,?,?,?,?);");
+    			//Insertar datos
+    			ps.setNull(1, 0);
+    			ps.setString(2, ingreso.getTipo());
+    			ps.setDouble(3, ingreso.getIngreso());
+    			ps.setString(4, ingreso.getDescription());
+    			ps.setString(5, ingreso.getFecha());
+    			ps.setString(6, usuario.cedula);
+    			ps.execute();
+    			
+    			conect.close();
+    			
+    			mensaje = "añadido exitosamente."; 
+    		} catch (SQLException e) {
+    			// TODO Auto-generated catch block
+    			mensaje = "Error: " + e.getMessage();
+    		}   	
+    	} else {
+    		mensaje = "No tiene saldo suficiente."; 
+    	}
+		return mensaje;
+    }
 	
 	
 	
@@ -130,5 +186,6 @@ public class Cuenta {
                 + "cuenta es " + this.saldo;
     }*/
 }
+    
 
 

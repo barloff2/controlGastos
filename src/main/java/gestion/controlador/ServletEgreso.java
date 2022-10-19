@@ -1,17 +1,16 @@
 package gestion.controlador;
 
-import jakarta.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import gestion.modelo.Cuenta;
 import gestion.modelo.Usuario;
-import jakarta.servlet.Servlet;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ServletEgreso
  */
@@ -45,7 +44,7 @@ public class ServletEgreso extends HttpServlet implements Servlet {
 
 		salida.println("<h1> Egreso Exitoso <h1>");
 
-		salida.println("Nuevo Saldo: " + cuenta.addGastos(asunto, valor));
+		salida.println("Nuevo Saldo: " );
 
 		salida.println("</br>");
 

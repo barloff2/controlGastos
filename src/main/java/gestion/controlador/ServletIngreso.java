@@ -2,13 +2,16 @@ package gestion.controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import gestion.modelo.*;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.Servlet;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class PrimerServlet
@@ -42,11 +45,13 @@ public class ServletIngreso extends HttpServlet {
 		usuario.setNombre(nombre_responsable);
 		usuario.setCedula(documento_responsable);
 		
+		//Crear Ingreso
+		Ingreso ingreso = new Ingreso(valor,asunto,fecha,tipo,usuario);
+		
 		
 		//Creacion Cuenta
-		Cuenta cuenta = new Cuenta(usuario);
-		//añadir Ingreso
-		cuenta.addIngresos(asunto, valor);
+		Cuenta cuenta = new Cuenta(usuario, ingreso);
+		cuenta.añadirIngresos();
 		
 		//Formato de respuesta
 		
@@ -55,9 +60,17 @@ public class ServletIngreso extends HttpServlet {
 		
 		PrintWriter salida = respuesta.getWriter();
 		
+        salida.println("<head>");
+        salida.println("<meta charset=\"utf-8\">");
+        salida.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=2\">");
+        salida.println("<title>Registrar Ingresos</title>");
+        salida.println("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\r\n"
+                + "            integrity=\"sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi\" crossorigin=\"anonymous\">");
+        salida.println("</head>");
+		
 		salida.println("<h1> Ingreso Exitoso <h1>");
 		
-		salida.println("Nuevo Saldo: " + cuenta.addIngresos(asunto, valor));
+		salida.println("Nuevo Saldo: " + cuenta.getSaldo());
 		
 		salida.println("</br>");
 		
