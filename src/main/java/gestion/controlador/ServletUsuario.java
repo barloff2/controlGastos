@@ -7,6 +7,7 @@ import gestion.modelo.*;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,7 +26,6 @@ public class ServletUsuario extends HttpServlet {
 		
 		//Crear Usuario
 		Usuario usuario = new Usuario(nombre_usuario, cedula_usuario);
-		Cuenta cuenta = new Cuenta(usuario);
 
 		respuesta.setContentType("text/html");
 		

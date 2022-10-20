@@ -9,6 +9,7 @@ import gestion.modelo.Usuario;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,8 +22,6 @@ public class ServletEstado extends HttpServlet {
 	protected void doGet(HttpServletRequest peticion, HttpServletResponse respuesta) throws ServletException, IOException {
 		String cedula = peticion.getParameter("cedula");
 		Usuario usuario = new Usuario();
-		Cuenta cuenta = new Cuenta(usuario);
-		
 	}
 
 

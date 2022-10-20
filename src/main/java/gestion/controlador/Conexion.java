@@ -16,5 +16,4 @@ public class Conexion {
         }
         return conectar;
     }
-    
 }

@@ -25,6 +25,9 @@ public class Cuenta {
     	this.saldo = 0;
     	this.gasto = gasto;	
     }
+    public Cuenta() {
+    	
+    }
     public double getSaldo() {
     	Conexion con = new Conexion();
     	Connection conect = con.conectar();
@@ -47,7 +50,9 @@ public class Cuenta {
     public void añadirIngresos() {
     	Conexion con = new Conexion();
     	Connection conect = con.conectar();
+    	System.out.println(conect);
     	String mensaje = "";
+    	getSaldo();
 		try {
 			PreparedStatement ps = conect.prepareStatement("INSERT INTO ingreso VALUES(?,?,?,?,?);");
 			//Insertar datos
@@ -72,15 +77,15 @@ public class Cuenta {
     	Connection conect = con.conectar();
     	String mensaje = "";
     	saldo = getSaldo();
-    	if(saldo != 0 && saldo > ingreso.getIngreso()) {
+    	if(saldo != 0 && saldo > gasto.getGasto()) {
     		try {
     			PreparedStatement ps = conect.prepareStatement("INSERT INTO gasto VALUES(?,?,?,?,?);");
     			//Insertar datos
     			ps.setNull(1, 0);
-    			ps.setString(2, ingreso.getTipo());
-    			ps.setDouble(3, ingreso.getIngreso());
-    			ps.setString(4, ingreso.getDescription());
-    			ps.setString(5, ingreso.getFecha());
+    			ps.setString(2, gasto.getTipo());
+    			ps.setDouble(3, gasto.getGasto());
+    			ps.setString(4, gasto.getDescription());
+    			ps.setString(5, gasto.getFecha());
     			ps.setString(6, usuario.cedula);
     			ps.execute();
     			
