@@ -14,6 +14,8 @@ public class Cuenta {
 	private double saldo;
     private Gasto gasto;
     private Ingreso ingreso;
+	Conexion con = new Conexion();
+	Connection conect = con.conectar();
     
     public Cuenta(Usuario usuario, Ingreso ingreso) {
     	this.usuario = usuario;
@@ -39,7 +41,7 @@ public class Cuenta {
 				this.saldo = rs.getDouble(2);
 			}
 			
-			conect.close();
+			con.cerrarConexion();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error: " + e.getMessage());
@@ -47,14 +49,10 @@ public class Cuenta {
 		return this.saldo;
     }
     
-    public void añadirIngresos() {
-    	Conexion con = new Conexion();
-    	Connection conect = con.conectar();
-    	System.out.println(conect);
+    public String añadirIngresos() {
     	String mensaje = "";
-    	getSaldo();
 		try {
-			PreparedStatement ps = conect.prepareStatement("INSERT INTO ingreso VALUES(?,?,?,?,?);");
+			PreparedStatement ps = conect.prepareStatement("INSERT INTO Ingreso VALUES(?,?,?,?,?,?);");
 			//Insertar datos
 			ps.setNull(1, 0);
 			ps.setString(2, ingreso.getTipo());
@@ -64,12 +62,14 @@ public class Cuenta {
 			ps.setString(6, usuario.cedula);
 			ps.execute();
 			
-			conect.close();
-			mensaje = "añadido exitosamente."; 
+			con.cerrarConexion();
+			mensaje = "añadido exitosamente. " + conect;
+			//setSaldo(ingreso.getIngreso());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			mensaje = "Error: " + e.getMessage();
-		} 
+		}
+		return mensaje;
     }
     
     public String añadirGasto() {
@@ -91,7 +91,7 @@ public class Cuenta {
     			
     			conect.close();
     			
-    			mensaje = "añadido exitosamente."; 
+    			mensaje = "añadido exitosamente.";
     		} catch (SQLException e) {
     			// TODO Auto-generated catch block
     			mensaje = "Error: " + e.getMessage();
@@ -102,7 +102,21 @@ public class Cuenta {
 		return mensaje;
     }
 	
-	
+    public void setSaldo(double ingreso) {
+    	Conexion con = new Conexion();
+    	Connection conect = con.conectar();
+    	double saldo = getSaldo() + ingreso;
+		try {
+			PreparedStatement ps = conect.prepareStatement("Update Cuenta SET saldo_cuenta = ? WHERE numero_cuenta = 1;");
+			//Insertar datos
+			ps.setDouble(1, saldo);
+			
+			conect.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error: " + e.getMessage());
+		} 
+    }
 	
 	
 	/*private double saldo; // Saldo de la cuenta

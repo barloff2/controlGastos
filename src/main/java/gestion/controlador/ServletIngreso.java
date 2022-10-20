@@ -51,7 +51,9 @@ public class ServletIngreso extends HttpServlet {
 		
 		//Creacion Cuenta
 		Cuenta cuenta = new Cuenta(usuario, ingreso);
-		cuenta.añadirIngresos();
+		
+		cuenta = null;
+		
 		
 		//Formato de respuesta
 		
@@ -68,7 +70,7 @@ public class ServletIngreso extends HttpServlet {
                 + "            integrity=\"sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi\" crossorigin=\"anonymous\">");
         salida.println("</head>");
 		
-		salida.println("<h1> Ingreso Exitoso <h1>");
+		salida.println("<h1>" + cuenta.añadirIngresos() + "<h1>");
 		
 		salida.println("Nuevo Saldo: " + cuenta.getSaldo());
 		

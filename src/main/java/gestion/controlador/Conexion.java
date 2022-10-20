@@ -2,6 +2,7 @@ package gestion.controlador;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexion {
     Connection conectar = null;
@@ -16,4 +17,14 @@ public class Conexion {
         }
         return conectar;
     }
+    
+    public void cerrarConexion() {
+        try {
+            conectar.close();
+            conectar = null;
+        } catch (SQLException e) {
+        	System.out.println("Error: " + e.getMessage());
+        }
+    }
+    
 }
