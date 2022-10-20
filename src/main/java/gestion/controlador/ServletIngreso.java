@@ -52,7 +52,6 @@ public class ServletIngreso extends HttpServlet {
 		//Creacion Cuenta
 		Cuenta cuenta = new Cuenta(usuario, ingreso);
 		
-		cuenta = null;
 		
 		
 		//Formato de respuesta
@@ -83,6 +82,8 @@ public class ServletIngreso extends HttpServlet {
 		salida.println("<a href=Ingresos.html> Regresar a Ingresos </a></br>");
 		
 		salida.println("<a href=index.html> Regresar a Inicio </a>");
+		
+		cuenta = null;
 		
 	}
 

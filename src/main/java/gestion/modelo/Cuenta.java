@@ -62,6 +62,7 @@ public class Cuenta {
 			ps.setString(6, usuario.cedula);
 			ps.execute();
 			
+			ps.close();
 			con.cerrarConexion();
 			mensaje = "añadido exitosamente. " + conect;
 			//setSaldo(ingreso.getIngreso());
