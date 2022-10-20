@@ -3,46 +3,92 @@
 
 <head>
 <meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Registrar Ingresos</title>
+<!-- Main Header and Footer -->
+<script type=module src=main.js></script>
+
+<!-- Bootstrap only -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+	crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-	<header></header>
+	<mn-header></mn-header>
+	<header><h1 style="padding: 60px; text-align: center">Formulario de Ingresos</h1></header>
 	<main>
-		<form method="get" action="ServletIngreso">
-			<h1>Formulario de Ingresos</h1>
-			<label> Tipo de ingreso: </label><br> <select name="tipo"
-				required>
-				<option>HONORARIOS</option>
-				<option>EXTRAS</option>
-			</select><br>
-			<br> <label> Valor: </label><br> <input type="number"
-				id="valor" name="valor" required><br>
-			<br> <label> Fecha: </label><br> <input type="date"
-				id="fecha" name="fecha" required><br>
-			<br> <label> Nombre Responsable: </label><br> <input type="text"
-				id="nombre_responsable" name="nombre_responsable" required><br>
-			<br> <label> Documento Responsable: </label><br> <input type="number"
-				id="documento_responsable" name="documento_responsable" required><br>
-			<br> <label> Asunto: </label><br>
-			<textarea rows="5" cols="20" id="asunto" name="asunto" value=""
-				required>
+		<div  class="container-sm">
+			<form method="get" action="ServletIngreso">
+				<div class="mb-3 row">
+				</div>
+				<div class="mb-3 row">
+					<label for="tipo" class="form-label"> Tipo de ingreso: </label><br>
+					<select name="tipo" class="form-select" required>
+						<option>HONORARIOS</option>
+						<option>EXTRAS</option>
+					</select>
+				</div>
+				<div class="mb-3 row">
+					<label for="valor" class="form-label"> Valor: </label><br>
+					<input class="form-control" type="number" id="valor" name="valor" required>
+				</div>
+				<div class="mb-3 row">
+					<label for="fecha" class="form-label"> Fecha: </label><br>
+					<input class="form-control" type="date" id="fecha" name="fecha" required>
+				</div>
+				<div class="mb-3 row">
+					<label for="nombre_responsable" class="form-label"> Nombre Responsable: </label><br>
+					<input class="form-control" type="text" id="nombre_responsable" name="nombre_responsable"
+						required>
+				</div>
+				<div class="mb-3 row">
+					<label for="documento_responsable" class="form-label"> Documento Responsable: </label><br>
+					<input class="form-control" type="number" id="documento_responsable" name="documento_responsable"
+						required>
+				</div>
+				<div class="mb-3 row">
+					<label for="asunto" class="form-label"> Asunto: </label><br>
+					<textarea class="form-control" rows="5" cols="20" id="asunto" name="asunto" value="" required>
       </textarea>
-			<br>
-			<br> <input type="submit" value="Enviar"> <input
-				type="button" value="limpiar" onclick="limpiar()"><br>
-		</form>
+				</div>
+				<br> 
+				<div class="d-grid gap-2 d-md-block">
+				
+				<div class="btn-group" role="group" >
+					<input class="btn btn-primary active" type="submit" value="Enviar"> 
+				</div>
+				<div class="btn-group" role="group" >
+					<input class="btn btn-primary active" type="button" value="limpiar" onclick="limpiar()">
+				</div>
+				</div>
+			</form>
+		</div>
 	</main>
 	<footer></footer>
 	<script>
 		function limpiar() {
 			document.getElementById("valor").value = "";
 			document.getElementById("fecha").value = "";
-			document.getElementById("responsable").value = "";
+			document.getElementById("nombre_responsable").value = "";
+			document.getElementById("documento_responsable").value = "";
 			document.getElementById("asunto").value = "";
 		}
 	</script>
-
+<mn-footer></mn-footer>
 </body>
 
 </html>
