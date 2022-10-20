@@ -2,11 +2,10 @@ package gestion.controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import gestion.DAO.CuentaDAO;
+import gestion.DAO.IngresoDAO;
 import gestion.modelo.*;
-import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,11 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletIngreso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
     public ServletIngreso() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -40,26 +35,54 @@ public class ServletIngreso extends HttpServlet {
 		String documento_responsable = peticion.getParameter("documento_responsable");
 		String asunto = peticion.getParameter("asunto");
 		
-		//Crear Usuario
+		//Instanciar Usuario
 		Usuario usuario = new Usuario();
 		usuario.setNombre(nombre_responsable);
 		usuario.setCedula(documento_responsable);
 		
-		//Crear Ingreso
+		//Instanciar Ingreso
 		Ingreso ingreso = new Ingreso(valor,asunto,fecha,tipo,usuario);
+		//Instanciar ingresoDao
+		IngresoDAO ingresoDao = new DAOIngresoImpl();
+		//Añadir Ingreso a base de datos.
+		try {
+			ingresoDao.addIngreso(ingreso);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		
-		//Creacion Cuenta
-		Cuenta cuenta = new Cuenta(usuario, ingreso);
-		
-		
-		
-		//Formato de respuesta
 		
 		respuesta.setContentType("text/html");
 		
 		
 		PrintWriter salida = respuesta.getWriter();
+		
+		//Instanciar Cuenta
+		Cuenta cuenta = new Cuenta(ingreso);
+		//Instanciar cuentaDao
+		CuentaDAO cuentaDao = new DAOCuentaImpl();
+		//Actualizar Saldo en objeto Cuenta
+		try {
+			cuenta.setSaldo(cuentaDao.mostrarSaldo());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			System.out.println(e1.getMessage());
+		}
+		//Metodo añadir Ingreso
+		cuenta.añadirIngresos();
+		salida.println("<h3>" + cuenta.getSaldo() + "<h3>");
+		//Modificar Saldo
+		try {
+			cuentaDao.modificarSaldo(cuenta);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		//Formato de respuesta
+		
+
 		
         salida.println("<head>");
         salida.println("<meta charset=\"utf-8\">");
@@ -69,9 +92,13 @@ public class ServletIngreso extends HttpServlet {
                 + "            integrity=\"sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi\" crossorigin=\"anonymous\">");
         salida.println("</head>");
 		
-		salida.println("<h1>" + cuenta.añadirIngresos() + "<h1>");
+		salida.println("<h1> <h1>");
 		
-		salida.println("Nuevo Saldo: " + cuenta.getSaldo());
+		try {
+			salida.println("Nuevo Saldo: " + cuentaDao.mostrarSaldo());
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 		salida.println("</br>");
 		
@@ -82,8 +109,6 @@ public class ServletIngreso extends HttpServlet {
 		salida.println("<a href=Ingresos.html> Regresar a Ingresos </a></br>");
 		
 		salida.println("<a href=index.html> Regresar a Inicio </a>");
-		
-		cuenta = null;
 		
 	}
 

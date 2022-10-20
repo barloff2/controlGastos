@@ -27,8 +27,7 @@ public class Usuario {
 		this.nombre = nombre;
 		this.cedula = cedula;
 		
-		conect = this.con.conectar();
-		try {
+		/*try {
 			PreparedStatement ps = conect.prepareStatement("INSERT INTO usuario VALUES(?,?,?);");
 			//Insertar datos
 			ps.setNull(1, 0);
@@ -40,7 +39,7 @@ public class Usuario {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error: " + e.getMessage());
-		}
+		}*/
 	}
 
 	// Metodos setter (establecen valores)
@@ -64,7 +63,6 @@ public class Usuario {
 
 	public List<String> getListadoNombres(String cedula) {
 		List<String> nombres = null;
-		conect = this.con.conectar();
 		try {
 			Statement st = conect.createStatement();
 			ResultSet rs = st.executeQuery("SELECT * FROM usuario;");

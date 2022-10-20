@@ -5,26 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-    Connection conectar = null;
+    protected Connection conectar;
+    private final String URL = "C:\\Users\\Stiven\\eclipse-workspace\\ControlGastos\\controlGastos.db";
 
-    public Connection conectar() {
-    	String url = "C:\\Users\\Stiven\\eclipse-workspace\\ControlGastos\\controlGastos.db";
+    public void conectar() {
         try {
             Class.forName("org.sqlite.JDBC");
-            conectar = DriverManager.getConnection("jdbc:sqlite:" + url);
+            conectar = DriverManager.getConnection("jdbc:sqlite:" + URL);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
-        return conectar;
     }
     
-    public void cerrarConexion() {
-        try {
-            conectar.close();
-            conectar = null;
-        } catch (SQLException e) {
-        	System.out.println("Error: " + e.getMessage());
-        }
+    public void cerrarConexion() throws SQLException {
+    	if (conectar != null && !conectar.isClosed()) {
+    		conectar.close();
+    	}
     }
     
 }

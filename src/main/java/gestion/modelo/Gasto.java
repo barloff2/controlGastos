@@ -1,6 +1,5 @@
 package gestion.modelo;
 
-import java.sql.Date;
 
 public class Gasto{
 	private double gasto;
