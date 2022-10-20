@@ -32,12 +32,12 @@
 	<header>
 		<h1 style="padding: 60px; text-align: center">Estado de Cuenta</h1>
 	</header>
-
+	<main>
 	<section>
 
 			<nav class="navbar bg-light">
 				<div class="container-fluid">
-					<a class="navbar-brand">Navbar</a>
+					<a class="navbar-brand"></a>
 					<form class="d-flex" role="search" method="get"
 						action="ServletEstado">
 						<input class="form-control me-2" type="date" id="fecha"
@@ -54,25 +54,23 @@
 	<div class="b-example-divider"></div>
 	<section>
 		<div class="container-fluid pb-3">
-			<div class="d-grid gap-3" style="grid-template-columns: 1fr 2fr;">
-				<div class="bg-light border rounded-3">
-					<br> <br> <br> <br> <br> <br> <br>
-					<br> <br> <br>
-				</div>
-				<div class="bg-light border rounded-3">
+				<div id="estado" class="bg-light border rounded-3">
 					<br> <br> <br> <br> <br> <br> <br>
 					<br> <br> <br>
 				</div>
 			</div>
-		</div>
 	</section>
-
-	<main></main>
-	<footer></footer>
+</main>
 	<script>
 		function limpiar() {
-			document.getElementById("cedula").value = "";
+			document.getElementById("valor").value = "";
+			document.getElementById("fecha").value = "";
+			document.getElementById("nombre_responsable").value = "";
+			document.getElementById("documento_responsable").value = "";
+			document.getElementById("asunto").value = "";
 		}
 	</script>
-	<mn-footer></mn-footer>
+<mn-footer></mn-footer>
 </body>
+
+</html>
