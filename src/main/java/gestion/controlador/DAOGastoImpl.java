@@ -9,7 +9,7 @@ import gestion.modelo.Gasto;
 public class DAOGastoImpl extends Conexion implements GastoDAO{
 
 	@Override
-	public void addIngreso(Gasto gasto) throws Exception {
+	public void addGasto(Gasto gasto) throws Exception {
 		this.conectar();
 		try {
 			PreparedStatement ps = this.conectar.prepareStatement("INSERT INTO Gasto VALUES(?,?,?,?,?,?);");

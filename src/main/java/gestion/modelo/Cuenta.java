@@ -9,7 +9,7 @@ public class Cuenta {
     	this.saldo = 0;
     	this.ingreso = ingreso;	
     }
-    public Cuenta(Usuario usuario, Gasto gasto) {
+    public Cuenta(Gasto gasto) {
     	this.saldo = 0;
     	this.gasto = gasto;	
     }
@@ -25,7 +25,7 @@ public class Cuenta {
     }
     
     public void añadirGasto() {
-    	if(this.saldo != 0 && this.saldo > gasto.getGasto()) {
+    	if (this.saldo != 0 && this.saldo > gasto.getGasto()) {
     		this.saldo -= gasto.getGasto();
     	}
     }

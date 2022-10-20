@@ -3,5 +3,5 @@ package gestion.DAO;
 import gestion.modelo.Gasto;
 
 public interface GastoDAO {
-	public void addIngreso(Gasto gasto) throws Exception;
+	public void addGasto(Gasto gasto) throws Exception;
 }
