@@ -6,16 +6,22 @@ public class Ingreso {
 	private String description;
 	private String fecha;
 	private String tipo;
-	private Usuario usuario;
+	private String responsable;
 	
-    public Ingreso(double ingreso, String description, String fecha, String tipo, Usuario usuario) {
-        this.ingreso=ingreso;
-        this.description=description;
-        this.fecha = fecha;
-        this.tipo = tipo;
-        this.usuario = usuario;
-        
-    }
+    public Ingreso(double ingreso, String description, String fecha, String tipo, String responsable) {
+		super();
+		this.ingreso = ingreso;
+		this.description = description;
+		this.fecha = fecha;
+		this.tipo = tipo;
+		this.responsable = responsable;
+	}
+
+
+	public Ingreso() {
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public String getFecha() {
 		return fecha;
@@ -49,13 +55,16 @@ public class Ingreso {
 		this.description = description;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+
+	public String getResponsable() {
+		return responsable;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+
+	public void setResponsable(String responsable) {
+		this.responsable = responsable;
 	}
+
     
 
  

@@ -19,97 +19,87 @@ import javax.servlet.http.HttpServletResponse;
 public class ServletIngreso extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public ServletIngreso() {
-    }
+	public ServletIngreso() {
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest peticion, HttpServletResponse respuesta) throws ServletException, IOException {
-		
-		//Tomar Datos
+	protected void doGet(HttpServletRequest peticion, HttpServletResponse respuesta)
+			throws ServletException, IOException {
+
+		// Tomar Datos
 		String tipo = peticion.getParameter("tipo");
 		double valor = Double.parseDouble(peticion.getParameter("valor"));
 		String fecha = peticion.getParameter("fecha");
 		String nombre_responsable = peticion.getParameter("nombre_responsable");
-		String documento_responsable = peticion.getParameter("documento_responsable");
 		String asunto = peticion.getParameter("asunto");
-		
-		//Instanciar Usuario
-		Usuario usuario = new Usuario();
-		usuario.setNombre(nombre_responsable);
-		usuario.setCedula(documento_responsable);
-		
-		//Instanciar Ingreso
-		Ingreso ingreso = new Ingreso(valor,asunto,fecha,tipo,usuario);
-		//Instanciar ingresoDao
+
+
+		// Instanciar Ingreso
+		Ingreso ingreso = new Ingreso(valor, asunto, fecha, tipo, nombre_responsable);
+		// Instanciar ingresoDao
 		IngresoDAO ingresoDao = new DAOIngresoImpl();
-		//Añadir Ingreso a base de datos.
+		// Añadir Ingreso a base de datos.
 		try {
 			ingresoDao.addIngreso(ingreso);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
-		
-		respuesta.setContentType("text/html");
-		
-		
-		PrintWriter salida = respuesta.getWriter();
-		
-		//Instanciar Cuenta
+
+		// Instanciar Cuenta
 		Cuenta cuenta = new Cuenta(ingreso);
-		//Instanciar cuentaDao
+		// Instanciar cuentaDao
 		CuentaDAO cuentaDao = new DAOCuentaImpl();
-		//Actualizar Saldo en objeto Cuenta
+		// Actualizar Saldo en objeto Cuenta
 		try {
 			cuenta.setSaldo(cuentaDao.mostrarSaldo());
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			System.out.println(e1.getMessage());
 		}
-		//Metodo añadir Ingreso
+		// Metodo añadir Ingreso
 		cuenta.añadirIngresos();
-		salida.println("<h3>" + cuenta.getSaldo() + "<h3>");
-		//Modificar Saldo
+		// Modificar Saldo
 		try {
 			cuentaDao.modificarSaldo(cuenta);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
-		//Formato de respuesta
-		
 
-		
-        salida.println("<head>");
-        salida.println("<meta charset=\"utf-8\">");
-        salida.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=2\">");
-        salida.println("<title>Registrar Ingresos</title>");
-        salida.println("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\r\n"
-                + "            integrity=\"sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi\" crossorigin=\"anonymous\">");
-        salida.println("</head>");
-		
-		salida.println("<h1> <h1>");
-		
-		try {
-			salida.println("Nuevo Saldo: " + cuentaDao.mostrarSaldo());
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		salida.println("</br>");
-		
-		salida.println("Datos: ");
-		
-		salida.println("</br>");
-		
-		salida.println("<a href=Ingresos.html> Regresar a Ingresos </a></br>");
-		
-		salida.println("<a href=index.html> Regresar a Inicio </a>");
-		
+		// Formato de respuesta
+		PrintWriter salida = respuesta.getWriter();
+
+		salida.println("<!DOCTYPE html>");
+		salida.println("<head>");
+		salida.println("<meta charset= \"utf-8\" >");
+		salida.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">");
+
+		salida.println("<title> Registrar Ingresos </title>");
+
+		salida.println("<script type=module src=main.js></script>");
+
+		salida.println(
+				"<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css\" integrity=\"sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N\" crossorigin=\"anonymous\"> ");
+		salida.println("</head>");
+		salida.println("<mn-header>");
+		salida.println("</mn-header>");
+		salida.println("<div class=\"alert alert-success\" role=\"alert\"> Ingreso Exitoso! </div>");
+		salida.println("<ul class=\"list-group\">");
+		salida.println(" <li class=\"list-group-item\">Saldo actual: " + cuenta.getSaldo());
+		salida.println("</li>");
+		salida.println("<li class=\"list-group-item\">Razon: " + ingreso.getDescription());
+		salida.println("</li>");
+		salida.println(" <li class=\"list-group-item\">Fecha: " + ingreso.getFecha());
+		salida.println(" </li>");
+		salida.println("  <li class=\"list-group-item\">Responsable: " + ingreso.getResponsable());
+		salida.println(" </li>");
+		salida.println(" </ul>");
+		salida.println(" <mn-footer></mn-footer>");
+		salida.println("  </body>");
+		salida.println(" </html>");
+
 	}
 
 }
