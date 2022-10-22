@@ -33,44 +33,49 @@
 		<h1 style="padding: 60px; text-align: center">Estado de Cuenta</h1>
 	</header>
 	<main>
-	<section>
+		<section>
 
 			<nav class="navbar bg-light">
 				<div class="container-fluid">
 					<a class="navbar-brand"></a>
-					<form class="d-flex" role="search" method="get" action="ServletEstado">
-						<input class="form-control me-2" type="date" id="fecha" name="fecha"> 
-						<input id="nombre" class="form-control me-2" type="search" placeholder="nombre" aria-label="Search">
-						<button id="buscar" class="btn btn-outline-success mr-1" type="submit" >Search</button>
+					<form class="d-flex" role="search" method="get"
+						action="ServletEstado">
+						<div class="dropdown show">
+							<select name="tipo" class="form-select" required>
+								<option>Gastos</option>
+								<option>Ingresos</option>
+							</select>
+						</div>
+						<input class="form-control me-2" type="date" id="fecha"
+							name="fecha"> <input id="nombre"
+							class="form-control me-2" type="search" placeholder="nombre"
+							aria-label="Search">
+						<button id="buscar" class="btn btn-outline-success mr-1"
+							type="submit">Search</button>
 						<input class="btn btn-primary active ml-1" type="button"
 							value="limpiar" onclick="limpiar()">
+
 					</form>
 				</div>
 			</nav>
 
-	</section>
-	<div class="b-example-divider"></div>
-	<section>
-		<div class="container-fluid pb-3">
+		</section>
+		<div class="b-example-divider"></div>
+		<section>
+			<div class="container-fluid pb-3">
 				<div id="estado" class="bg-light border rounded-3">
 					<br> <br> <br> <br> <br> <br> <br>
 					<br> <br> <br>
 				</div>
 			</div>
-	</section>
-</main>
-	<script type="text/javascript">
-		document.getElementById("buscar").addEventListener("click", function(){
-			$.get("ServletEstado",$(document.forms[0]).serialize(),function(respuesta){
-				var estado=document.getElementById("estado");
-				var datos = JSON.parse(respuesta);
-				estado.innerHTML +=datos;
-			});
-		},false);
-			document.getElementById("fecha").value = "";
-			document.getElementById("nombre").value = "";
+		</section>
+	</main>
+	<script>
+		
+		document.getElementById("fecha").value = "";
+		document.getElementById("nombre").value = "";
 	</script>
-<mn-footer></mn-footer>
+	<mn-footer></mn-footer>
 </body>
 
 </html>
