@@ -45,6 +45,12 @@ public class ServletEstado extends HttpServlet {
 				IngresoDAO ingresoDao = new DAOIngresoImpl();
 				try {
 					listaI = ingresoDao.mostrarIngresos();
+					ObjectMapper mapper = new ObjectMaper();
+					json = mapper.writeValuesAsString(listaI);
+					try (PrintWriter out = respuesta.getWriter()){
+						System.out.println(json);
+					};
+					
 				} catch (Exception e1) {
 					System.out.println(e1.getMessage());
 				}

@@ -63,7 +63,8 @@
 		document.getElementById("buscar").addEventListener("click", function(){
 			$.get("ServletEstado",$(document.forms[0]).serialize(),function(respuesta){
 				var estado=document.getElementById("estado");
-				estado.innerHTML=respuesta;
+				var datos = JSON.parse(respuesta);
+				estado.innerHTML +=datos;
 			});
 		},false);
 			document.getElementById("fecha").value = "";
