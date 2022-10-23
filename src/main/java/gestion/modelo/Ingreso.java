@@ -9,7 +9,6 @@ public class Ingreso {
 	private String responsable;
 	
     public Ingreso(double ingreso, String description, String fecha, String tipo, String responsable) {
-		super();
 		this.ingreso = ingreso;
 		this.description = description;
 		this.fecha = fecha;
@@ -19,7 +18,6 @@ public class Ingreso {
 
 
 	public Ingreso() {
-		// TODO Auto-generated constructor stub
 	}
 
 

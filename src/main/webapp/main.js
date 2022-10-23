@@ -60,7 +60,7 @@ class MnFooter extends HTMLElement {
   <section class="">
     <div class="container p-4 pb-0">
       <section class="nav justify-content-center border-top">
-      <a href="index.html" class="nav-link px-2 text-muted">Home</a>
+      <a href="index.jsp" class="nav-link px-2 text-muted">Home</a>
       </section>
     </div>
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">

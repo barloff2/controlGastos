@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="">
 
@@ -5,7 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Registrar Ingresos</title>
+<title>Estado</title>
 <!-- Main Header and Footer -->
 <script type=module src=main.js></script>
 
@@ -35,17 +38,14 @@
 	<main>
 		<section>
 
-			<nav class="navbar bg-light">
+			<nav class="navbar-expand-md bg-light ">
 				<div class="container-fluid">
 					<a class="navbar-brand"></a>
-					<form class="d-flex" role="search" method="get"
-						action="ServletEstado">
-						<div class="dropdown show">
-							<select name="tipo" class="form-select" required>
-								<option>Gastos</option>
-								<option>Ingresos</option>
-							</select>
-						</div>
+					<form class="d-flex" role="search" method="get"	action="ServletEstado">
+						<select name="tipo" class="form-select" required>
+							<option selected>Gastos</option>
+							<option>Ingresos</option>
+						</select> 
 						<input class="form-control me-2" type="date" id="fecha"
 							name="fecha"> <input id="nombre"
 							class="form-control me-2" type="search" placeholder="nombre"
@@ -63,15 +63,34 @@
 		<div class="b-example-divider"></div>
 		<section>
 			<div class="container-fluid pb-3">
-				<div id="estado" class="bg-light border rounded-3">
-					<br> <br> <br> <br> <br> <br> <br>
-					<br> <br> <br>
-				</div>
+				<h3 align="center">Listado Movimientos</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Tipo</th>
+							<th>Responsable</th>
+							<th>Valor</th>
+							<th>fecha</th>
+							<th>Descripción</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="movimiento" items="${listaI}">
+							<tr>
+								<td><c:out value="${movimiento.tipo}"></c:out></td>
+								<td><c:out value="${movimiento.responsable}"></c:out></td>
+								<td><c:out value="${movimiento.ingreso}"></c:out></td>
+								<td><c:out value="${movimiento.fecha}"></c:out></td>
+								<td><c:out value="${movimiento.description}"></c:out></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 			</div>
 		</section>
 	</main>
 	<script>
-		
 		document.getElementById("fecha").value = "";
 		document.getElementById("nombre").value = "";
 	</script>

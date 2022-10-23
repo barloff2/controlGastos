@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="">
 
@@ -27,7 +29,7 @@
 	<main class="html">
 		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-xlg-start">
 			<ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-				<!-- BotÃ³n Estado -->
+				<!-- Botón Estado -->
 				<li>
 					<button class="btn btn-outline-secondary mr-2">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -35,14 +37,14 @@
 							<path
 								d="M1 11a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2z" />
 						</svg>
-						<a href="Estado.html" class="nav-link text-blue" style="text-decoration:none"> <svg
+						<a href="ServletEstado" class="nav-link text-blue" style="text-decoration:none"> <svg
 								class="bi d-block mx-auto mb-1" width="20" height="15">
 								<use xlink:href="#home"></use>
 							</svg> &nbspEstado&nbsp
 						</a>
 					</button>
 				</li>
-				<!-- BotÃ³n Estado -->
+				<!-- Botón Estado -->
 				<li>
 					<button class="btn btn-outline-secondary mr-2">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -57,7 +59,7 @@
 						</a>
 					</button>
 				</li>
-				<!-- BotÃ³n Gastos -->
+				<!-- Botón Gastos -->
 				<li>
 					<button class="btn btn-outline-secondary">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

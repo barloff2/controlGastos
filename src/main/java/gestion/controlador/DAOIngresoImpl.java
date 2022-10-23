@@ -39,20 +39,19 @@ public class DAOIngresoImpl extends Conexion implements IngresoDAO {
 
 	@Override
 	public List<Ingreso> mostrarIngresos() throws Exception {
-		List<Ingreso> lista = null;
+		List<Ingreso> lista = new ArrayList<Ingreso>();
 		try {
 			this.conectar();
+			System.out.println(this.conectar);
 			Statement st = this.conectar.createStatement();
-			
-			lista = new ArrayList();
-			ResultSet rs = st.executeQuery("SELECT * FROM Gasto;");
+			ResultSet rs = st.executeQuery("SELECT * FROM Ingreso;");
 			while(rs.next()) {
 				Ingreso ingreso = new Ingreso();
-				ingreso.setDescription(rs.getString("descripcion_gasto"));
-				ingreso.setIngreso(rs.getDouble("valor_gasto"));
-				ingreso.setTipo(rs.getString("tipo_gasto"));
-				ingreso.setFecha(rs.getString("fecha_gasto"));
-				ingreso.setResponsable(rs.getNString("responsable_gasto"));
+				ingreso.setDescription(rs.getString("descripcion_ingreso"));
+				ingreso.setIngreso(rs.getDouble("valor_ingreso"));
+				ingreso.setTipo(rs.getString("tipo_ingreso"));
+				ingreso.setFecha(rs.getString("fecha_ingreso"));
+				ingreso.setResponsable(rs.getString("responsable_ingreso"));
 				lista.add(ingreso);
 			}
 			rs.close();

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class Conexion {
     protected Connection conectar;
-    private final String URL = "C:\\Users\\mjfc9\\Documents\\trabajoGit\\controlGastos\\controlGastos.db";
+    private final String URL = "C:\\Users\\Stiven\\eclipse-workspace\\ControlGastos\\controlGastos.db";
 
     public void conectar() {
         try {

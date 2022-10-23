@@ -39,7 +39,7 @@ public class DAOGastoImpl extends Conexion implements GastoDAO{
 			this.conectar();
 			Statement st = this.conectar.createStatement();
 			
-			lista = new ArrayList();
+			lista = new ArrayList<Gasto>();
 			ResultSet rs = st.executeQuery("SELECT * FROM Gasto;");
 			while(rs.next()) {
 				Gasto gasto = new Gasto();
