@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 		<!DOCTYPE html>
 		<html lang="">
 
@@ -25,6 +26,9 @@
 		</head>
 
 		<body>
+		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script> 
 			<mn-header></mn-header>
 			<header>
 				<h1 style="padding: 60px; text-align: center">Estado de Cuenta</h1>
@@ -55,7 +59,7 @@
 				<section>
 					<div class="container-fluid pb-3">
 						<h3 align="center">Listado Movimientos</h3>
-						<table class="table">
+						<table id = "tabla" class="table">
 							<thead>
 								<tr>
 									<th scope="col">Tipo</th>
@@ -94,7 +98,33 @@
 			<script>
 				document.getElementById("fecha").value = "";
 				document.getElementById("nombre").value = "";
+				
+				$(document).ready(function(){
+				    var table = $('#tabla').DataTable({
+				       orderCellsTop: true,
+				       fixedHeader: true 
+				    });
+
+				    //Creamos una fila en el head de la tabla y lo clonamos para cada columna
+				    $('#tabla thead tr').clone(true).appendTo( '#tabla thead' );
+
+				    $('#tabla thead tr:eq(1) th').each( function (i) {
+				        var title = $(this).text(); //es el nombre de la columna
+				        $(this).html( '<input type="text" placeholder="Search...'+title+'" />' );
+				 
+				        $( 'input', this ).on( 'keyup change', function () {
+				            if ( table.column(i).search() !== this.value ) {
+				                table
+				                    .column(i)
+				                    .search( this.value )
+				                    .draw();
+				            }
+				        } );
+				    } );   
+				});
 			</script>
+			
+
 			<div>
 				<svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
 				</svg>
