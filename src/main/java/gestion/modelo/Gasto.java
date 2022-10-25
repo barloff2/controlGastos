@@ -6,15 +6,19 @@ public class Gasto{
 	private String description;
 	private String fecha;
 	private String tipo;
-	private Usuario usuario;
+	private String responsable;
 	
-    public Gasto (double gasto, String description, String fecha, String tipo, Usuario usuario) {
+    public Gasto (double gasto, String description, String fecha, String tipo, String usuario) {
         this.gasto=gasto;
         this.description=description;
         this.fecha = fecha;
         this.tipo = tipo;
-        this.usuario = usuario;
+        this.responsable = usuario;
     }
+
+	public Gasto() {
+		
+	}
 
 	public double getGasto() {
 		return gasto;
@@ -48,12 +52,12 @@ public class Gasto{
 		this.tipo = tipo;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public String getResponsable() {
+		return responsable;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setResponsable(String responsable) {
+		this.responsable = responsable;
 	}
 }
 

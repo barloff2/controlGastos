@@ -19,7 +19,6 @@ public class DAOCuentaImpl extends Conexion implements CuentaDAO {
 			ps.setDouble(1, cuenta.getSaldo());
 			ps.execute();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println("Error: " + e.getMessage());
 		} finally {
 			this.cerrarConexion();
