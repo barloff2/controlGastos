@@ -24,23 +24,18 @@ public class ServletEstado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest peticion, HttpServletResponse respuesta) throws ServletException, IOException {
-		List<Ingreso> listaI = new ArrayList<Ingreso>();
 		IngresoDAO ingresoDao = new DAOIngresoImpl();
-		try {
-			listaI = ingresoDao.mostrarIngresos();
-		} catch (Exception e1) {
-			System.out.println(e1.getMessage());
-		}
-		List<Gasto> listaG = new ArrayList<Gasto>();
 		GastoDAO gastoDao = new DAOGastoImpl();
 		try {
-			listaG = gastoDao.mostrarGastos();
+			ArrayList<Object> listaM = new ArrayList<Object>((ingresoDao.mostrarIngresos()));
+			listaM.addAll(gastoDao.mostrarGastos());
+			System.out.println(gastoDao.mostrarGastos());
+			System.out.println(listaM);
+			peticion.setAttribute("listaM", listaM);
+			peticion.getRequestDispatcher("/Estado.jsp").forward(peticion, respuesta);
 		} catch (Exception e1) {
 			System.out.println(e1.getMessage());
-		}
-		peticion.setAttribute("listaG", listaG);
-		peticion.setAttribute("listaI", listaI);
-		peticion.getRequestDispatcher("/Estado.jsp").forward(peticion, respuesta);
+		}	
 
 	}
 

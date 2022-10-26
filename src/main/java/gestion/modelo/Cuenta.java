@@ -21,12 +21,12 @@ public class Cuenta {
     }
     
     public void añadirIngresos() { 	
-    	this.saldo += ingreso.getIngreso();
+    	this.saldo += ingreso.getValor();
     }
     
     public void añadirGasto() {
-    	if (this.saldo != 0 && this.saldo > gasto.getGasto()) {
-    		this.saldo -= gasto.getGasto();
+    	if (this.saldo != 0 && this.saldo > gasto.getValor()) {
+    		this.saldo -= gasto.getValor();
     	}
     }
 	public Gasto getGasto() {

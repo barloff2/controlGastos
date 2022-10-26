@@ -39,17 +39,13 @@
 					<nav class="navbar-expand-md bg-light ">
 						<div class="container-fluid">
 							<a class="navbar-brand"></a>
-							<form class="d-flex" role="search" method="get" action="ServletEstado">
+							<form class="d-flex" role="search">
 								<select name="tipo" class="form-select" required>
 									<option selected>Gastos</option>
 									<option>Ingresos</option>
 								</select>
 								<input class="form-control me-2" type="date" id="fecha" name="fecha"> <input id="nombre"
 									class="form-control me-2" type="search" placeholder="nombre" aria-label="Search">
-								<button id="buscar" class="btn btn-outline-success mr-1" type="submit">Search</button>
-								<input class="btn btn-primary active ml-1" type="button" value="limpiar"
-									onclick="limpiar()">
-
 							</form>
 						</div>
 					</nav>
@@ -70,7 +66,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="movimiento" items="${listaI}">
+								<c:forEach var="movimiento" items="${listaM}">
 									<tr>
 										<td>
 											<c:out value="${movimiento.tipo}"></c:out>
@@ -79,7 +75,7 @@
 											<c:out value="${movimiento.responsable}"></c:out>
 										</td>
 										<td>
-											<c:out value="${movimiento.ingreso}"></c:out>
+											<c:out value="${movimiento.valor}"></c:out>
 										</td>
 										<td>
 											<c:out value="${movimiento.fecha}"></c:out>

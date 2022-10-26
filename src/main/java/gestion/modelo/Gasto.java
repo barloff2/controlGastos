@@ -2,15 +2,15 @@ package gestion.modelo;
 
 
 public class Gasto{
-	private double gasto;
+	private double valor;
 	private String description;
 	private String fecha;
 	private String tipo;
 	private String responsable;
 	
-    public Gasto (double gasto, String description, String fecha, String tipo, String usuario) {
-        this.gasto=gasto;
-        this.description=description;
+    public Gasto (double valor, String description, String fecha, String tipo, String usuario) {
+        this.valor = valor;
+        this.description = description;
         this.fecha = fecha;
         this.tipo = tipo;
         this.responsable = usuario;
@@ -20,12 +20,12 @@ public class Gasto{
 		
 	}
 
-	public double getGasto() {
-		return gasto;
+	public double getValor() {
+		return valor;
 	}
 
-	public void setGasto(double gasto) {
-		this.gasto = gasto;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public String getDescription() {

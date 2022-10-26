@@ -2,14 +2,14 @@ package gestion.modelo;
 
 
 public class Ingreso {
-	private double ingreso;
+	private double valor;
 	private String description;
 	private String fecha;
 	private String tipo;
 	private String responsable;
 	
-    public Ingreso(double ingreso, String description, String fecha, String tipo, String responsable) {
-		this.ingreso = ingreso;
+    public Ingreso(double valor, String description, String fecha, String tipo, String responsable) {
+		this.valor = valor;
 		this.description = description;
 		this.fecha = fecha;
 		this.tipo = tipo;
@@ -37,12 +37,12 @@ public class Ingreso {
 		this.tipo = tipo;
 	}
 
-	public double getIngreso() {
-		return ingreso;
+	public double getValor() {
+		return valor;
 	}
 
-	public void setIngreso(double ingreso) {
-		this.ingreso = ingreso;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 
 	public String getDescription() {

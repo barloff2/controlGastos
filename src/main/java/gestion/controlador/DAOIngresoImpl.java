@@ -20,7 +20,7 @@ public class DAOIngresoImpl extends Conexion implements IngresoDAO {
 			//Insertar datos
 			ps.setNull(1, 0);
 			ps.setString(2, ingreso.getTipo());
-			ps.setDouble(3, ingreso.getIngreso());
+			ps.setDouble(3, ingreso.getValor());
 			ps.setString(4, ingreso.getDescription());
 			ps.setString(5, ingreso.getFecha());
 			ps.setString(6, ingreso.getResponsable());
@@ -48,7 +48,7 @@ public class DAOIngresoImpl extends Conexion implements IngresoDAO {
 			while(rs.next()) {
 				Ingreso ingreso = new Ingreso();
 				ingreso.setDescription(rs.getString("descripcion_ingreso"));
-				ingreso.setIngreso(rs.getDouble("valor_ingreso"));
+				ingreso.setValor(rs.getDouble("valor_ingreso"));
 				ingreso.setTipo(rs.getString("tipo_ingreso"));
 				ingreso.setFecha(rs.getString("fecha_ingreso"));
 				ingreso.setResponsable(rs.getString("responsable_ingreso"));

@@ -16,7 +16,7 @@ public class DAOGastoImpl extends Conexion implements GastoDAO{
 			//Insertar datos
 			ps.setNull(1, 0);
 			ps.setString(2, gasto.getTipo());
-			ps.setDouble(3, gasto.getGasto());
+			ps.setDouble(3, gasto.getValor());
 			ps.setString(4, gasto.getDescription());
 			ps.setString(5, gasto.getFecha());
 			ps.setString(6, gasto.getResponsable());
@@ -34,20 +34,18 @@ public class DAOGastoImpl extends Conexion implements GastoDAO{
 
 	@Override
 	public List<Gasto> mostrarGastos() throws Exception {
-		List<Gasto> lista = null;
+		List<Gasto> lista = new ArrayList<Gasto>();
 		try {
 			this.conectar();
 			Statement st = this.conectar.createStatement();
-			
-			lista = new ArrayList<Gasto>();
 			ResultSet rs = st.executeQuery("SELECT * FROM Gasto;");
 			while(rs.next()) {
 				Gasto gasto = new Gasto();
 				gasto.setDescription(rs.getString("descripcion_gasto"));
-				gasto.setGasto(rs.getDouble("valor_gasto"));
+				gasto.setValor(rs.getDouble("valor_gasto"));
 				gasto.setTipo(rs.getString("tipo_gasto"));
 				gasto.setFecha(rs.getString("fecha_gasto"));
-				gasto.setResponsable(rs.getNString("responsable_gasto"));
+				gasto.setResponsable(rs.getString("responsable_gasto"));
 				lista.add(gasto);
 			}
 			rs.close();
