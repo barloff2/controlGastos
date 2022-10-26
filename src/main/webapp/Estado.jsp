@@ -10,11 +10,16 @@
 			<title>Estado</title>
 			<!-- Main Header and Footer -->
 			<script type=module src=main.js></script>
+			<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+			<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+			<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
 
 			<!-- Bootstrap only -->
 			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 				integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
 				crossorigin="anonymous">
+				
+			<link rel="" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.dataTables.min.css">
 
 			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
 				integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
@@ -23,39 +28,28 @@
 				integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
 				crossorigin="anonymous"></script>
 
+
+<style>
+/*estilos para la tabla*/
+.dropdown {
+appearance: none;  
+}
+</style>
+
 		</head>
 
 		<body>
-		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script> 
 			<mn-header></mn-header>
 			<header>
-				<h1 style="padding: 60px; text-align: center">Estado de Cuenta</h1>
+				<h1 style="padding: 20px; text-align: center">Estado de Cuenta</h1>
 			</header>
 			<main>
+				<div class="b-example-divider"></div> 
 				<section>
-
-					<nav class="navbar-expand-md bg-light ">
-						<div class="container-fluid">
-							<a class="navbar-brand"></a>
-							<form class="d-flex" role="search">
-								<select name="tipo" class="form-select" required>
-									<option selected>Gastos</option>
-									<option>Ingresos</option>
-								</select>
-								<input class="form-control me-2" type="date" id="fecha" name="fecha"> <input id="nombre"
-									class="form-control me-2" type="search" placeholder="nombre" aria-label="Search">
-							</form>
-						</div>
-					</nav>
-
-				</section>
-				<div class="b-example-divider"></div>
-				<section>
-					<div class="container-fluid pb-3">
-						<h3 align="center">Listado Movimientos</h3>
-						<table id = "tabla" class="table">
+					<div class="container-fluid">
+						<h3 align="center">Movimientos</h3>
+						<nav class="navbar-expand-md bg-light ">
+						<table id = "table" class="table">
 							<thead>
 								<tr>
 									<th scope="col">Tipo</th>
@@ -87,24 +81,23 @@
 								</c:forEach>
 							</tbody>
 						</table>
-					</div>
+						</nav>
 					</div>
 				</section>
 			</main>
 			<script>
-				document.getElementById("fecha").value = "";
-				document.getElementById("nombre").value = "";
+
 				
 				$(document).ready(function(){
-				    var table = $('#tabla').DataTable({
+				    var table = $('#table').DataTable({
 				       orderCellsTop: true,
 				       fixedHeader: true 
 				    });
 
 				    //Creamos una fila en el head de la tabla y lo clonamos para cada columna
-				    $('#tabla thead tr').clone(true).appendTo( '#tabla thead' );
+				    $('#table thead tr').clone(true).appendTo( '#table thead' );
 
-				    $('#tabla thead tr:eq(1) th').each( function (i) {
+				    $('#table thead tr:eq(1) th').each( function (i) {
 				        var title = $(this).text(); //es el nombre de la columna
 				        $(this).html( '<input type="text" placeholder="Search...'+title+'" />' );
 				 
@@ -133,7 +126,7 @@
 						</section>
 					</div>
 					<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-						Â© 2022 Copyright
+						© 2022 Copyright
 					</div>
 				</section>
 				</footer>
